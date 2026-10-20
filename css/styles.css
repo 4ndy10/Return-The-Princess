@@ -1,7 +1,8 @@
 /* ══════════════════════════════════════════════════════
    Return The Princess — styles.css
    Estética: Retro pixel-art, inspirado en Mario Bros.
-   Font: Press Start 2P (Google Fonts)
+   Layout: Imágenes a pantalla completa, UI overlay
+   Font: Press Start 2P (Google Fonts) — tamaños x2
    ══════════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -23,7 +24,7 @@
     --victory-bg:   #0a1a0a;
 
     --font:         'Press Start 2P', monospace;
-    --shadow:       4px 4px 0px rgba(0, 0, 0, 0.5);
+    --shadow:       4px 4px 0px rgba(0, 0, 0, 0.6);
     --border:       3px solid;
 }
 
@@ -58,81 +59,86 @@ body {
 }
 
 /* ══════════════════════════════════════
-   LAYOUT
-   ══════════════════════════════════════ */
-
-.pantalla {
-    max-width: 800px;
-    width: 90%;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    animation: fadeIn 0.8s ease-out;
-}
-
-/* ══════════════════════════════════════
-   TYPOGRAPHY
-   ══════════════════════════════════════ */
-
-h1 {
-    font-size: 1.4rem;
-    color: var(--gold);
-    text-shadow:
-        3px 3px 0px var(--brick),
-       -1px -1px 0px rgba(0, 0, 0, 0.5);
-    letter-spacing: 2px;
-    line-height: 1.6;
-}
-
-.narrativa {
-    font-size: 0.65rem;
-    line-height: 2.2;
-    color: var(--text);
-    max-width: 650px;
-    visibility: hidden; /* typewriter JS reveals it */
-}
-
-/* ══════════════════════════════════════
-   IMAGES — pixel-art treatment
+   FULLSCREEN IMAGES
+   Todas las imágenes principales cubren
+   el viewport completo como fondo.
    ══════════════════════════════════════ */
 
 .img-portada,
 .img-sala,
 .img-muerte,
-.img-victoria {
-    max-width: 100%;
-    width: 450px;
-    height: auto;
-    image-rendering: pixelated;
-    border: var(--border) var(--gold);
-    box-shadow: var(--shadow);
-    animation: fadeIn 1s ease-out;
+.img-victoria,
+.img-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    filter: brightness(0.4);
+    pointer-events: none;
 }
 
+/* Death pages — tint más oscuro y rojizo */
 .img-muerte {
-    border-color: var(--mario-red);
-    box-shadow: 4px 4px 0px rgba(139, 0, 0, 0.6);
+    filter: brightness(0.35) saturate(1.3);
 }
 
+/* Victory — más luminosa */
 .img-victoria {
-    border-color: var(--gold);
-    box-shadow:
-        4px 4px 0px rgba(0, 0, 0, 0.4),
-        0 0 30px rgba(251, 208, 0, 0.15);
+    filter: brightness(0.5) saturate(1.2);
 }
 
 /* ══════════════════════════════════════
-   BUTTONS — shared base
+   LAYOUT — pantalla completa con overlay
+   ══════════════════════════════════════ */
+
+.pantalla {
+    width: 100%;
+    min-height: 100vh;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* ══════════════════════════════════════
+   TYPOGRAPHY — tamaños x2
+   ══════════════════════════════════════ */
+
+h1 {
+    font-size: 2.8rem;
+    color: var(--gold);
+    text-shadow:
+        4px 4px 0px var(--brick),
+       -1px -1px 0px rgba(0, 0, 0, 0.6);
+    letter-spacing: 3px;
+    line-height: 1.5;
+}
+
+.narrativa {
+    font-size: 1.3rem;
+    line-height: 2;
+    color: var(--text);
+    max-width: 900px;
+    visibility: hidden; /* typewriter JS reveals it */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* ══════════════════════════════════════
+   BUTTONS — base (tamaños x2)
    ══════════════════════════════════════ */
 
 .btn {
     display: inline-block;
     font-family: var(--font);
-    font-size: 0.7rem;
-    padding: 1rem 1.5rem;
+    font-size: 1.4rem;
+    padding: 1.5rem 2.5rem;
     text-decoration: none;
     color: var(--text);
     background: var(--surface);
@@ -146,8 +152,8 @@ h1 {
 
 .btn:hover {
     background: var(--brick);
-    transform: translateY(-2px);
-    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.6);
 }
 
 .btn:active {
@@ -166,8 +172,8 @@ h1 {
 /* ── Button Variants ── */
 
 .btn-start {
-    font-size: 0.8rem;
-    padding: 1.2rem 2rem;
+    font-size: 1.6rem;
+    padding: 1.8rem 3rem;
     background: var(--mario-red);
     border-color: var(--gold);
     animation: pulse 1.5s ease infinite alternate;
@@ -180,45 +186,49 @@ h1 {
 
 .btn-reiniciar {
     background: var(--mario-red);
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 
 .btn-responder {
     font-family: var(--font);
-    font-size: 0.7rem;
-    padding: 1rem 1.5rem;
+    font-size: 1.4rem;
+    padding: 1.5rem 2.5rem;
     background: var(--green);
     color: var(--text);
     border: var(--border) var(--gold);
     box-shadow: var(--shadow);
     cursor: pointer;
     transition: background 0.15s, transform 0.15s;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 
 .btn-responder:hover {
     background: #5bc846;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
 /* ══════════════════════════════════════
    OPTIONS GRID — doors & mushrooms
+   Distribuidos con espaciado amplio
    ══════════════════════════════════════ */
 
 .opciones {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 1rem;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 1.5rem;
 }
 
 .btn-puerta,
 .btn-champiñon {
-    flex: 1 1 150px;
-    max-width: 200px;
-    padding: 1.5rem 1rem;
-    font-size: 0.65rem;
+    flex: 1 1 200px;
+    max-width: 280px;
+    padding: 2rem 1.5rem;
+    font-size: 1.3rem;
 }
 
 .btn-puerta:hover  { background: #8b4513; }
@@ -230,30 +240,30 @@ h1 {
 
 .form-acertijo {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
 }
 
 .form-acertijo fieldset {
     border: var(--border) var(--gold);
-    padding: 1.5rem;
-    background: var(--surface);
+    padding: 2rem;
+    background: rgba(45, 27, 78, 0.85);
     box-shadow: var(--shadow);
 }
 
 .pregunta {
     font-family: var(--font);
-    font-size: 0.6rem;
+    font-size: 1.2rem;
     color: var(--gold);
-    line-height: 2.2;
-    padding-bottom: 1rem;
+    line-height: 2;
+    padding-bottom: 1.5rem;
 }
 
 .opcion-acertijo {
     display: block;
     font-family: var(--font);
-    font-size: 0.6rem;
-    padding: 0.8rem 1rem;
-    margin: 0.5rem 0;
+    font-size: 1.2rem;
+    padding: 1rem 1.5rem;
+    margin: 0.8rem 0;
     cursor: pointer;
     border: 2px solid transparent;
     transition: background 0.15s, border-color 0.15s;
@@ -261,21 +271,22 @@ h1 {
 }
 
 .opcion-acertijo:hover {
-    background: rgba(251, 208, 0, 0.1);
+    background: rgba(251, 208, 0, 0.15);
     border-color: var(--gold);
 }
 
 .opcion-acertijo input[type="radio"] {
-    margin-right: 0.5rem;
+    margin-right: 0.8rem;
     accent-color: var(--gold);
     cursor: pointer;
+    transform: scale(1.3);
 }
 
 /* ══════════════════════════════════════
-   PAGE-SPECIFIC BACKGROUNDS
+   PAGE-SPECIFIC ATMOSPHERES
    ══════════════════════════════════════ */
 
-/* Death pages — dark red atmosphere */
+/* Death pages — red vignette over darkened image */
 body[data-page="muerte"] {
     background: var(--death-bg);
 }
@@ -284,12 +295,12 @@ body[data-page="muerte"]::before {
     content: '';
     position: fixed;
     inset: 0;
-    background: radial-gradient(ellipse at center, transparent 40%, rgba(139, 0, 0, 0.3));
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(139, 0, 0, 0.4));
     z-index: -1;
     pointer-events: none;
 }
 
-/* Victory — golden glow */
+/* Victory — golden glow over brightened image */
 body[data-page="victoria"] {
     background: var(--victory-bg);
 }
@@ -298,7 +309,7 @@ body[data-page="victoria"]::before {
     content: '';
     position: fixed;
     inset: 0;
-    background: radial-gradient(ellipse at center, rgba(251, 208, 0, 0.08), transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(251, 208, 0, 0.12), transparent 70%);
     z-index: -1;
     pointer-events: none;
 }
@@ -311,7 +322,6 @@ body[data-page="victoria"] h1 {
    KEYFRAME ANIMATIONS
    ══════════════════════════════════════ */
 
-/* Screen shake — triggered by JS adding .shake to body */
 @keyframes shake {
     0%, 100% { transform: translate(0); }
     10%  { transform: translate(-8px,  3px); }
@@ -328,13 +338,11 @@ body.shake {
     animation: shake 0.5s ease-in-out;
 }
 
-/* Fade in — used on .pantalla */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(15px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Pulse — start button & chosen state */
 @keyframes pulse {
     from { transform: scale(1); }
     to   { transform: scale(1.05); }
@@ -344,17 +352,32 @@ body.shake {
    RESPONSIVE
    ══════════════════════════════════════ */
 
-@media (max-width: 600px) {
-    h1 { font-size: 1rem; }
-
-    .narrativa { font-size: 0.55rem; }
-
-    .btn {
-        font-size: 0.6rem;
-        padding: 0.8rem 1rem;
+@media (max-width: 768px) {
+    .pantalla {
+        padding: 2rem 1.5rem;
+        gap: 2rem;
     }
 
-    .btn-start { font-size: 0.65rem; }
+    h1 { font-size: 2rem; }
+
+    .narrativa { font-size: 1.1rem; }
+
+    .btn {
+        font-size: 1.2rem;
+        padding: 1.2rem 1.8rem;
+    }
+
+    .btn-start { font-size: 1.3rem; }
+
+    .btn-puerta,
+    .btn-champiñon {
+        font-size: 1.1rem;
+    }
+
+    .pregunta,
+    .opcion-acertijo {
+        font-size: 1rem;
+    }
 
     .opciones {
         flex-direction: column;
@@ -364,13 +387,6 @@ body.shake {
     .btn-puerta,
     .btn-champiñon {
         max-width: 100%;
-        width: 100%;
-    }
-
-    .img-portada,
-    .img-sala,
-    .img-muerte,
-    .img-victoria {
         width: 100%;
     }
 }

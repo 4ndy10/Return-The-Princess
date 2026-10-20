@@ -11,24 +11,71 @@
 
 // ── State ──
 let bgm = null;
+let bgmTimer = null;
 
 // ══════════════════════════════════════
 //  AUDIO ENGINE
 // ══════════════════════════════════════
 
 /**
- * Reproduce música de fondo en loop.
+ * Reproduce música de fondo.
  * Reemplaza cualquier BGM anterior.
  * Si autoplay está bloqueado, se desbloquea al primer clic del usuario.
+ * 
+ * Regla de negocio: El audio del castillo de Peach (bg_peach_castle.mp3)
+ * tiene un seteo forzoso de duración MÁXIMA de 5 segundos.
+ *
+ * @param {string}      src            — Ruta del archivo de audio
+ * @param {number|null} maxDurationSec — Duración máxima opcional en segundos
  */
-function playBGM(src) {
-    if (bgm) bgm.pause();
+function playBGM(src, maxDurationSec = null) {
+    if (bgm) {
+        bgm.pause();
+        bgm.currentTime = 0;
+    }
+    if (bgmTimer) {
+        clearTimeout(bgmTimer);
+        bgmTimer = null;
+    }
+
     bgm = new Audio(src);
-    bgm.loop = true;
     bgm.volume = 0.4;
+
+    // Seteo forzoso: Peach Castle tiene límite estricto de 5s
+    const maxLimit = maxDurationSec ?? (src.includes('bg_peach_castle') ? 5 : null);
+    bgm.loop = !maxLimit;
+
+    if (maxLimit) {
+        const stopAudio = () => {
+            if (bgm) {
+                bgm.pause();
+                bgm.currentTime = 0;
+            }
+            if (bgmTimer) {
+                clearTimeout(bgmTimer);
+                bgmTimer = null;
+            }
+        };
+
+        // Detener al alcanzar los segundos máximos de reproducción
+        bgm.addEventListener('timeupdate', () => {
+            if (bgm.currentTime >= maxLimit) {
+                stopAudio();
+            }
+        });
+
+        // Temporizador de seguridad al comenzar la reproducción efectiva
+        bgm.addEventListener('play', () => {
+            if (bgmTimer) clearTimeout(bgmTimer);
+            bgmTimer = setTimeout(stopAudio, maxLimit * 1000);
+        });
+    }
+
     bgm.play().catch(() => {
         // ponytail: autoplay bloqueado — se desbloquea con la primera interacción
-        document.addEventListener('click', () => bgm.play(), { once: true });
+        document.addEventListener('click', () => {
+            if (bgm) bgm.play();
+        }, { once: true });
     });
 }
 
@@ -186,11 +233,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Lógica por página
     switch (page) {
         case 'portada': {
+            playBGM('audio/bg_peach_castle.mp3');
             const btn = document.getElementById('btn-start');
             if (btn) {
                 btn.addEventListener('click', e => {
                     e.preventDefault();
-                    playBGM('audio/bg_peach_castle.mp3');
                     playSFX('audio/sfx_door.mp3');
                     btn.classList.add('chosen');
                     setTimeout(() => {

@@ -67,13 +67,13 @@ Todas las pantallas de muerte incluyen un botón de "Volver a comenzar" que rein
 
 | Archivo | Tipo | Uso |
 |---|---|---|
-| `bg_peach_castle.mp3` | BGM | Portada y victoria |
+| `bg_peach_castle.mp3` | BGM | Portada y victoria (duración máxima forzosa: 5 segundos) |
 | `bg_bowser_castle.mp3` | BGM | Salas 1-3 y acertijo |
 | `sfx_door.mp3` | SFX | Al elegir puerta/champiñón |
 | `sfx_dead.mp3` | SFX | Pantallas de muerte |
 | `sfx_win.mp3` | SFX | Pantalla de victoria |
 
-El audio se desbloquea con la primera interacción del usuario (clic en "Comenzar aventura") para cumplir con las políticas de autoplay de los navegadores.
+El audio del castillo de la princesa Peach (`bg_peach_castle.mp3`) tiene una duración forzada de un máximo de 5 segundos tanto en portada como en victoria. Además, el audio se desbloquea con la primera interacción del usuario para cumplir con las políticas de autoplay de los navegadores.
 
 ## 🚀 Despliegue
 
