@@ -179,30 +179,30 @@ function initDramaticLinks() {
 // ══════════════════════════════════════
 
 /**
- * Maneja el formulario del acertijo.
- * Espera un <form id="acertijo-form"> con radio inputs name="respuesta".
- * La opción correcta tiene value="correcta".
+ * Maneja el acertijo con tarjetas de imagen clicables.
+ * Espera un contenedor #acertijo-opciones con .champiñon-card hijos.
+ * Cada tarjeta tiene data-respuesta="correcta" o "incorrecta".
  *
  * - Respuesta correcta → sala3.html (con SFX de puerta)
  * - Respuesta incorrecta → muerte_veneno.html (con SFX de muerte + shake)
  */
 function initAcertijo() {
-    const form = document.getElementById('acertijo-form');
-    if (!form) return;
+    const container = document.getElementById('acertijo-opciones');
+    if (!container) return;
 
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        const pick = form.querySelector('input[name="respuesta"]:checked');
-        if (!pick) return;
+    container.querySelectorAll('.champiñon-card').forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.add('chosen');
 
-        if (pick.value === 'correcta') {
-            playSFX('audio/sfx_door.mp3');
-            setTimeout(() => { window.location.href = 'sala3.html'; }, 1000);
-        } else {
-            playSFX('audio/sfx_dead.mp3');
-            screenShake(500);
-            setTimeout(() => { window.location.href = 'muerte_veneno.html'; }, 1500);
-        }
+            if (card.dataset.respuesta === 'correcta') {
+                playSFX('audio/sfx_door.mp3');
+                setTimeout(() => { window.location.href = 'sala3.html'; }, 1000);
+            } else {
+                playSFX('audio/sfx_dead.mp3');
+                screenShake(500);
+                setTimeout(() => { window.location.href = 'muerte_veneno.html'; }, 1500);
+            }
+        });
     });
 }
 

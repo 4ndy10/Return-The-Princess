@@ -1,8 +1,8 @@
-# 🏰 Return The Princess
+# Return The Princess
 
 > Juego web interactivo de laberinto tipo "Point-and-Click", basado en decisiones lógicas de vida o muerte. Estética retro pixel-art inspirada en el universo de Mario Bros.
 
-## 🎮 Descripción
+## Descripción
 
 El jugador debe atravesar el castillo de Bowser para rescatar a la princesa. A lo largo de 3 niveles, debe elegir la puerta (o champiñón) correcta entre varias opciones. Una elección equivocada significa la muerte instantánea; solo el camino correcto avanza al siguiente nivel.
 
@@ -18,7 +18,7 @@ El jugador debe atravesar el castillo de Bowser para rescatar a la princesa. A l
 
 Todas las pantallas de muerte incluyen un botón de "Volver a comenzar" que reinicia el juego desde la portada.
 
-## 🛠️ Pila Tecnológica
+## Pila Tecnológica
 
 | Tecnología | Uso |
 |---|---|
@@ -29,7 +29,7 @@ Todas las pantallas de muerte incluyen un botón de "Volver a comenzar" que rein
 
 **Sin frameworks.** Sin backend. Solo HTML + CSS + JS vanilla desplegado como sitio estático.
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 / (raíz)
@@ -64,7 +64,7 @@ Todas las pantallas de muerte incluyen un botón de "Volver a comenzar" que rein
     └── sfx_win.mp3
 ```
 
-## 🔊 Sistema de Audio
+## Sistema de Audio
 
 | Archivo | Tipo | Uso |
 |---|---|---|
@@ -76,10 +76,10 @@ Todas las pantallas de muerte incluyen un botón de "Volver a comenzar" que rein
 
 El audio del castillo de la princesa Peach (`bg_peach_castle.mp3`) tiene una duración forzada de un máximo de 5 segundos tanto en portada como en victoria. Además, el audio se desbloquea con la primera interacción del usuario para cumplir con las políticas de autoplay de los navegadores.
 
-## 🚀 Despliegue
+## Despliegue
 
 El proyecto se despliega como sitio estático en **Vercel**, conectado directamente al repositorio de GitHub. Cada `push` a la rama principal dispara un nuevo deploy automático.
 
-## 👥 Equipo
+## Equipo
 
 Proyecto académico — 7mo Semestre, Desarrollo Web.

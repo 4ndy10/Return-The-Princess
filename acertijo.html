@@ -13,36 +13,27 @@
     <main class="pantalla acertijo">
         <img src="img/Doors_Layout.jpg" alt="Sala secreta del acertijo" class="img-fondo" id="img-fondo-acertijo">
 
-        <h1>🧩 Prueba de Sabiduría</h1>
+        <h1>Prueba de Sabiduría</h1>
 
         <p data-typewriter="40" class="narrativa">
             El champiñón te ha transportado a una sala secreta. Una voz retumba entre las paredes: "Responde correctamente... o el veneno será tu destino."
         </p>
 
-        <form id="acertijo-form" class="form-acertijo">
-            <fieldset>
-                <legend class="pregunta">¿De qué color es el champiñón que otorga una vida extra en el Reino Champiñón?</legend>
+        <p class="pregunta-acertijo">¿De qué color es el champiñón que otorga una vida extra en el Reino Champiñón?</p>
 
-                <label class="opcion-acertijo">
-                    <input type="radio" name="respuesta" value="incorrecta1">
-                    <span>🔴 Rojo</span>
-                </label>
+        <div id="acertijo-opciones" class="opciones-champiñon">
+            <div class="champiñon-card" data-respuesta="incorrecta" id="cham-rojo">
+                <img src="img/ChamRojo.png" alt="Champiñón Rojo">
+            </div>
 
-                <label class="opcion-acertijo">
-                    <input type="radio" name="respuesta" value="correcta">
-                    <span>🟢 Verde</span>
-                </label>
+            <div class="champiñon-card" data-respuesta="correcta" id="cham-verde">
+                <img src="img/ChamVerde.png" alt="Champiñón Verde">
+            </div>
 
-                <label class="opcion-acertijo">
-                    <input type="radio" name="respuesta" value="incorrecta2">
-                    <span>🔵 Azul</span>
-                </label>
-            </fieldset>
-
-            <button type="submit" class="btn btn-responder" id="btn-responder">
-                Confirmar respuesta
-            </button>
-        </form>
+            <div class="champiñon-card" data-respuesta="incorrecta" id="cham-azul">
+                <img src="img/ChamAzul.png" alt="Champiñón Azul">
+            </div>
+        </div>
     </main>
 
     <script src="js/main.js"></script>
