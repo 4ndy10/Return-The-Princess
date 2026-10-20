@@ -49,6 +49,7 @@ Todas las pantallas de muerte incluyen un botón de "Volver a comenzar" que rein
 │   └── main.js             # Lógica del juego
 ├── img/                    # Sprites y fondos (JPG)
 │   ├── Main_Page.jpg
+│   ├── Doors_Layout.jpg
 │   ├── Mushroom_Quest.jpg
 │   ├── Win_End.jpg
 │   ├── Death_Lava.jpg
