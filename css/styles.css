@@ -328,6 +328,21 @@ body[data-page="victoria"] h1 {
 }
 
 /* ══════════════════════════════════════
+   FOOTER — créditos del equipo
+   ══════════════════════════════════════ */
+
+.footer-creditos {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    font-family: var(--font);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    line-height: 2;
+    margin-top: auto;
+}
+
+/* ══════════════════════════════════════
    KEYFRAME ANIMATIONS
    ══════════════════════════════════════ */
 
