@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acertijo — Prueba de Sabiduría | Return The Princess</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="acertijo">
+
+    <div id="contenedor-3d"></div>
+
+    <main class="pantalla acertijo">
+        <h1>🧩 Prueba de Sabiduría</h1>
+
+        <p data-typewriter="40" class="narrativa">
+            El champiñón te ha transportado a una sala secreta. Una voz retumba entre las paredes: "Responde correctamente... o el veneno será tu destino."
+        </p>
+
+        <form id="acertijo-form" class="form-acertijo">
+            <fieldset>
+                <legend class="pregunta">¿De qué color es el champiñón que otorga una vida extra en el Reino Champiñón?</legend>
+
+                <label class="opcion-acertijo">
+                    <input type="radio" name="respuesta" value="incorrecta1">
+                    <span>🔴 Rojo</span>
+                </label>
+
+                <label class="opcion-acertijo">
+                    <input type="radio" name="respuesta" value="correcta">
+                    <span>🟢 Verde</span>
+                </label>
+
+                <label class="opcion-acertijo">
+                    <input type="radio" name="respuesta" value="incorrecta2">
+                    <span>🔵 Azul</span>
+                </label>
+            </fieldset>
+
+            <button type="submit" class="btn btn-responder" id="btn-responder">
+                Confirmar respuesta
+            </button>
+        </form>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

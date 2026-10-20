@@ -1,0 +1,376 @@
+/* ══════════════════════════════════════════════════════
+   Return The Princess — styles.css
+   Estética: Retro pixel-art, inspirado en Mario Bros.
+   Font: Press Start 2P (Google Fonts)
+   ══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* ── Design Tokens ── */
+:root {
+    --bg:           #1a0a2e;
+    --bg-dark:      #0d0519;
+    --surface:      #2d1b4e;
+    --text:         #f0e6d3;
+    --text-dim:     #a89b8c;
+    --gold:         #fbd000;
+    --mario-red:    #e52521;
+    --green:        #49a835;
+    --brick:        #c84c09;
+    --lava:         #ff4500;
+    --poison:       #7b2d8b;
+    --death-bg:     #1a0000;
+    --victory-bg:   #0a1a0a;
+
+    --font:         'Press Start 2P', monospace;
+    --shadow:       4px 4px 0px rgba(0, 0, 0, 0.5);
+    --border:       3px solid;
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ── Base ── */
+html { font-size: 16px; }
+
+body {
+    font-family: var(--font);
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    line-height: 1.8;
+}
+
+/* ── Three.js Background Layer ── */
+#contenedor-3d {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ══════════════════════════════════════
+   LAYOUT
+   ══════════════════════════════════════ */
+
+.pantalla {
+    max-width: 800px;
+    width: 90%;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* ══════════════════════════════════════
+   TYPOGRAPHY
+   ══════════════════════════════════════ */
+
+h1 {
+    font-size: 1.4rem;
+    color: var(--gold);
+    text-shadow:
+        3px 3px 0px var(--brick),
+       -1px -1px 0px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+    line-height: 1.6;
+}
+
+.narrativa {
+    font-size: 0.65rem;
+    line-height: 2.2;
+    color: var(--text);
+    max-width: 650px;
+    visibility: hidden; /* typewriter JS reveals it */
+}
+
+/* ══════════════════════════════════════
+   IMAGES — pixel-art treatment
+   ══════════════════════════════════════ */
+
+.img-portada,
+.img-sala,
+.img-muerte,
+.img-victoria {
+    max-width: 100%;
+    width: 450px;
+    height: auto;
+    image-rendering: pixelated;
+    border: var(--border) var(--gold);
+    box-shadow: var(--shadow);
+    animation: fadeIn 1s ease-out;
+}
+
+.img-muerte {
+    border-color: var(--mario-red);
+    box-shadow: 4px 4px 0px rgba(139, 0, 0, 0.6);
+}
+
+.img-victoria {
+    border-color: var(--gold);
+    box-shadow:
+        4px 4px 0px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(251, 208, 0, 0.15);
+}
+
+/* ══════════════════════════════════════
+   BUTTONS — shared base
+   ══════════════════════════════════════ */
+
+.btn {
+    display: inline-block;
+    font-family: var(--font);
+    font-size: 0.7rem;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    color: var(--text);
+    background: var(--surface);
+    border: var(--border) var(--gold);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.btn:hover {
+    background: var(--brick);
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.5);
+}
+
+.btn:active {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+}
+
+/* Selected state — after click, before navigation */
+.btn.chosen {
+    background: var(--gold);
+    color: var(--bg);
+    animation: pulse 0.4s ease infinite alternate;
+    pointer-events: none;
+}
+
+/* ── Button Variants ── */
+
+.btn-start {
+    font-size: 0.8rem;
+    padding: 1.2rem 2rem;
+    background: var(--mario-red);
+    border-color: var(--gold);
+    animation: pulse 1.5s ease infinite alternate;
+}
+
+.btn-start:hover {
+    background: #ff3b37;
+    animation: none;
+}
+
+.btn-reiniciar {
+    background: var(--mario-red);
+    margin-top: 0.5rem;
+}
+
+.btn-responder {
+    font-family: var(--font);
+    font-size: 0.7rem;
+    padding: 1rem 1.5rem;
+    background: var(--green);
+    color: var(--text);
+    border: var(--border) var(--gold);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: background 0.15s, transform 0.15s;
+    margin-top: 0.5rem;
+}
+
+.btn-responder:hover {
+    background: #5bc846;
+    transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════════
+   OPTIONS GRID — doors & mushrooms
+   ══════════════════════════════════════ */
+
+.opciones {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.btn-puerta,
+.btn-champiñon {
+    flex: 1 1 150px;
+    max-width: 200px;
+    padding: 1.5rem 1rem;
+    font-size: 0.65rem;
+}
+
+.btn-puerta:hover  { background: #8b4513; }
+.btn-champiñon:hover { background: var(--mario-red); }
+
+/* ══════════════════════════════════════
+   RIDDLE FORM — acertijo.html
+   ══════════════════════════════════════ */
+
+.form-acertijo {
+    width: 100%;
+    max-width: 600px;
+}
+
+.form-acertijo fieldset {
+    border: var(--border) var(--gold);
+    padding: 1.5rem;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.pregunta {
+    font-family: var(--font);
+    font-size: 0.6rem;
+    color: var(--gold);
+    line-height: 2.2;
+    padding-bottom: 1rem;
+}
+
+.opcion-acertijo {
+    display: block;
+    font-family: var(--font);
+    font-size: 0.6rem;
+    padding: 0.8rem 1rem;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: background 0.15s, border-color 0.15s;
+    line-height: 1.8;
+}
+
+.opcion-acertijo:hover {
+    background: rgba(251, 208, 0, 0.1);
+    border-color: var(--gold);
+}
+
+.opcion-acertijo input[type="radio"] {
+    margin-right: 0.5rem;
+    accent-color: var(--gold);
+    cursor: pointer;
+}
+
+/* ══════════════════════════════════════
+   PAGE-SPECIFIC BACKGROUNDS
+   ══════════════════════════════════════ */
+
+/* Death pages — dark red atmosphere */
+body[data-page="muerte"] {
+    background: var(--death-bg);
+}
+
+body[data-page="muerte"]::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(139, 0, 0, 0.3));
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Victory — golden glow */
+body[data-page="victoria"] {
+    background: var(--victory-bg);
+}
+
+body[data-page="victoria"]::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(251, 208, 0, 0.08), transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+body[data-page="victoria"] h1 {
+    animation: pulse 1s ease infinite alternate;
+}
+
+/* ══════════════════════════════════════
+   KEYFRAME ANIMATIONS
+   ══════════════════════════════════════ */
+
+/* Screen shake — triggered by JS adding .shake to body */
+@keyframes shake {
+    0%, 100% { transform: translate(0); }
+    10%  { transform: translate(-8px,  3px); }
+    20%  { transform: translate( 8px, -3px); }
+    30%  { transform: translate(-6px,  2px); }
+    40%  { transform: translate( 6px, -2px); }
+    50%  { transform: translate(-4px,  0); }
+    60%  { transform: translate( 4px,  0); }
+    70%  { transform: translate(-2px,  1px); }
+    80%  { transform: translate( 2px, -1px); }
+}
+
+body.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Fade in — used on .pantalla */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Pulse — start button & chosen state */
+@keyframes pulse {
+    from { transform: scale(1); }
+    to   { transform: scale(1.05); }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════ */
+
+@media (max-width: 600px) {
+    h1 { font-size: 1rem; }
+
+    .narrativa { font-size: 0.55rem; }
+
+    .btn {
+        font-size: 0.6rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .btn-start { font-size: 0.65rem; }
+
+    .opciones {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-puerta,
+    .btn-champiñon {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .img-portada,
+    .img-sala,
+    .img-muerte,
+    .img-victoria {
+        width: 100%;
+    }
+}

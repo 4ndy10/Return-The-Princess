@@ -4,12 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Return The Princess</title>
+    <meta name="description" content="Return The Princess — Un juego web de laberinto point-and-click con decisiones de vida o muerte.">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-    
-    <h1>Return The Princess</h1>
-    <p>Prueba de conexión con Vercel: ¡El repositorio está enlazado correctamente!</p>
-    <button>Comenzar aventura (Próximamente)</button>
+<body data-page="portada">
 
+    <!-- Three.js background layer -->
+    <div id="contenedor-3d"></div>
+
+    <main class="pantalla portada">
+        <img src="img/Main_Page.jpg" alt="Castillo del Reino — Return The Princess" class="img-portada" id="img-portada">
+
+        <h1>Return The Princess</h1>
+
+        <p data-typewriter="45" class="narrativa">
+            La princesa ha sido capturada en lo más profundo del castillo de Bowser. Solo tú puedes atravesar el laberinto mortal y traerla de vuelta. Elige sabiamente... o perece en el intento.
+        </p>
+
+        <a href="sala1.html" id="btn-start" class="btn btn-start">
+            🎮 Comenzar aventura
+        </a>
+    </main>
+
+    <script src="js/main.js"></script>
 </body>
 </html>

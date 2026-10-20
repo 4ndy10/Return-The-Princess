@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivel 3 — La Cámara de los Champiñones | Return The Princess</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="sala3">
+
+    <div id="contenedor-3d"></div>
+
+    <main class="pantalla sala">
+        <h1>Nivel 3 — La Cámara de los Champiñones</h1>
+
+        <img src="img/Mushroom_Quest.jpg" alt="Tres champiñones rojos misteriosos" class="img-sala" id="img-sala3">
+
+        <p data-typewriter="40" class="narrativa">
+            ¡Último nivel! Tres champiñones rojos brillan ante ti. Uno es tu salvación, otro esconde un enigma, y el último... veneno mortal. La princesa está cerca. No te equivoques ahora.
+        </p>
+
+        <div class="opciones champiñones">
+            <a href="acertijo.html"
+               data-delay="1500"
+               data-sfx="audio/sfx_door.mp3"
+               class="btn btn-champiñon" id="champiñon-1">
+                🍄 Champiñón 1
+            </a>
+
+            <a href="muerte_veneno.html"
+               data-delay="1500"
+               data-sfx="audio/sfx_door.mp3"
+               class="btn btn-champiñon" id="champiñon-2">
+                🍄 Champiñón 2
+            </a>
+
+            <a href="victoria.html"
+               data-delay="1500"
+               data-sfx="audio/sfx_door.mp3"
+               class="btn btn-champiñon" id="champiñon-3">
+                🍄 Champiñón 3
+            </a>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

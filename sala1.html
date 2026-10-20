@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivel 1 — Sala de las Puertas | Return The Princess</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="sala1">
+
+    <div id="contenedor-3d"></div>
+
+    <main class="pantalla sala">
+        <h1>Nivel 1 — La Sala de las Puertas</h1>
+
+        <p data-typewriter="40" class="narrativa">
+            Has entrado al castillo de Bowser. Tres puertas se alzan ante ti. Solo una lleva al siguiente nivel... las demás ocultan ríos de lava ardiente. Elige la puerta que tu instinto reclama.
+        </p>
+
+        <div class="opciones puertas">
+            <a href="muerte_lava.html"
+               data-delay="1500"
+               data-sfx="audio/sfx_door.mp3"
+               class="btn btn-puerta" id="puerta-1">
+                🚪 Puerta 1
+            </a>
+
+            <a href="sala2.html"
+               data-delay="1500"
+               data-sfx="audio/sfx_door.mp3"
+               class="btn btn-puerta" id="puerta-2">
+                🚪 Puerta 2
+            </a>
+
+            <a href="muerte_lava.html"
+               data-delay="1500"
+               data-sfx="audio/sfx_door.mp3"
+               class="btn btn-puerta" id="puerta-3">
+                🚪 Puerta 3
+            </a>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
